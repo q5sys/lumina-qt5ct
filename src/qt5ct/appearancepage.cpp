@@ -310,7 +310,7 @@ void AppearancePage::readSettings()
 
     QDir("/").mkpath(Qt5CT::userColorSchemePath());
     findColorSchemes(Qt5CT::userColorSchemePath());
-    findColorSchemes(Qt5CT::sharedColorSchemePath());
+    findColorSchemes(Qt5CT::sharedColorSchemePath().join(", "));
 
     if(m_ui->colorSchemeComboBox->count() == 0)
     {

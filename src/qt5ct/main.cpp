@@ -49,7 +49,7 @@ int main(int argc, char **argv)
     app.installTranslator(&qt_translator);
 
     qDebug("Configuration path: %s", qPrintable(Qt5CT::configPath()));
-    qDebug("Shared QSS path: %s", qPrintable(Qt5CT::sharedStyleSheetPath()));
+    qDebug("Shared QSS path: %s", qPrintable(Qt5CT::sharedStyleSheetPath().join(", ")));
 
     //checking environment
     QStringList errorMessages;

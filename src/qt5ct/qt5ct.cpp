@@ -85,9 +85,18 @@ QString Qt5CT::userStyleSheetPath()
     return configPath() + "qss/";
 }
 
-QString Qt5CT::sharedStyleSheetPath()
+QStringList Qt5CT::sharedStyleSheetPath()
 {
-    return QT5CT_DATADIR"/qt5ct/qss/";
+    QStringList dirs;
+    dirs << QString(getenv("XDG_CONFIG_HOME"));
+    dirs << QString(getenv("XDG_CONFIG_DIRS")).split(":");
+    for(int i=0; i<dirs.length(); i++){
+      dirs[i].append("/qt5ct/colors/");
+    }
+    if(dirs.isEmpty()){
+        dirs << QT5CT_DATADIR"/qt5ct/qss/"; //no XDG settings - use the hardcoded path
+    }
+    return dirs;
 }
 
 QString Qt5CT::userColorSchemePath()
@@ -95,9 +104,18 @@ QString Qt5CT::userColorSchemePath()
     return configPath() + "colors/";
 }
 
-QString Qt5CT::sharedColorSchemePath()
+QStringList Qt5CT::sharedColorSchemePath()
 {
-    return QT5CT_DATADIR"/qt5ct/colors/";
+    QStringList dirs;
+    dirs << QString(getenv("XDG_CONFIG_HOME"));
+    dirs << QString(getenv("XDG_CONFIG_DIRS")).split(":");
+    for(int i=0; i<dirs.length(); i++){
+      dirs[i].append("/qt5ct/colors/");
+    }
+    if(dirs.isEmpty()){
+        dirs << QT5CT_DATADIR"/qt5ct/colors/"; //no XDG settings - use the hardcoded path
+    }
+    return dirs;
 }
 
 QString Qt5CT::systemLanguageID()

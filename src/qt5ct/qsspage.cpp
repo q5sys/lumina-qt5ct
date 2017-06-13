@@ -160,7 +160,7 @@ void QSSPage::readSettings()
     //load stylesheets
     m_ui->qssListWidget->clear();
     findStyleSheets(Qt5CT::userStyleSheetPath());
-    findStyleSheets(Qt5CT::sharedStyleSheetPath());
+    findStyleSheets(Qt5CT::sharedStyleSheetPath().join(", "));
 
     QSettings settings(Qt5CT::configFile(), QSettings::IniFormat);
     QStringList styleSheets = settings.value("Interface/stylesheets").toStringList();
